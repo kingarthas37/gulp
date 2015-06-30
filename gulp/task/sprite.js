@@ -29,7 +29,7 @@ gulp.task('sprite', function () {
 
         var options = {
             imgName: name + '.png',
-            imgPath: '../../images/sprites/' + name + '.png',
+            imgPath: '../images/sprites/' + name + '.png',
             cssName: name + '.scss',
             cssFormat: 'css',
             padding:5
@@ -49,6 +49,7 @@ gulp.task('sprite', function () {
         var spriteData = gulp.src(path.join(spriteDir,'*.png'))
           //  .pipe(gulpif(hashedSpriteName != '', newer(path.join(spriteBaseDir, hashedSpriteName))))
             .pipe(spritesmith(options));
+        
         
         
         spriteData.img
