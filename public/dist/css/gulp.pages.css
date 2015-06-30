@@ -530,6 +530,16 @@ Icon classes can be used entirely standalone. They are named after their origina
   width: 16px;
   height: 16px; }
 
+.auto-prefix {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: #f00; }
+  .auto-prefix:hover {
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg); }
+
 .list-cont .filter {
   border: 1px solid #ddd;
   border-left: none;

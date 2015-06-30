@@ -1,0 +1,9 @@
+.auto-prefix {
+  display: block;
+  width:100px;
+  height: 100px;
+  background: #f00;
+  &:hover {
+    transform:rotate(45deg);
+  }
+}
