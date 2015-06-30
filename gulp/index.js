@@ -17,7 +17,7 @@ tasks.forEach(function(task) {
 if(args.env === 'dev') {
     //dev task
     //gulp.task('default', ['sprite','css','browserify','watch']);
-    gulp.task('default', ['css-common','css','sprite','browserify','watch']);
+    gulp.task('default', ['css-common','css','image','sprite','browserify','watch']);
 } else if(args.env === 'prod') {
     //build task
    // gulp.task('default', ['clean','sprite','css:dist','browserify:dist']);

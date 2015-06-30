@@ -1,6 +1,5 @@
 'use strict';
 
-
 var gulp = require('gulp');
 var spritesmith = require('gulp.spritesmith');
 var imagemin = require('gulp-imagemin');
@@ -52,10 +51,10 @@ gulp.task('sprite', function () {
         
         
         spriteData.img
-            .pipe(imagemin({
-                progressive: true,
-                use: [pngquant()]
-            }))
+         //   .pipe(imagemin({
+          //      progressive: true,
+          //      use: [pngquant()]
+          //  }))
           //  .pipe(rev())
             .pipe(gulp.dest(config.path.spriteDist))
            // .pipe(size())
