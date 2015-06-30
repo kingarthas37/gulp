@@ -16,7 +16,7 @@ var config = require('../../package.json');
 
 // css common
 gulp.task('css-common',function() {
-    return gulp.src(config.path.base + 'css/**/*.css')
+    return gulp.src(config['css-common'])
         .pipe(sourcemaps.init())
         .pipe(concat(config.name + '.external.css'))
         .pipe(sourcemaps.write('.'))
@@ -25,7 +25,7 @@ gulp.task('css-common',function() {
 
 
 gulp.task('css-common:dist',function() {
-    return gulp.src(config.path.base + 'css/**/*.css')
+    return gulp.src(config['css-common'])
         .pipe(sourcemaps.init())
         .pipe(concat(config.name + '.external.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
