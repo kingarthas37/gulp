@@ -25,7 +25,7 @@
   .topbar .wrap:after, .container:after, .header:after, .header .search-box:after, .header .menu:after, .form .form-control:after, .modal .row:after, .lists:after, .lists .box .tip:after, .list-cont .filter .filter-panel:after, .list-cont .filter .filter-box:after, .product-cont .detail-top:after, .product-cont .detail-top .context .price dl:after, .product-cont .detail-top .context .option dl:after, .product-cont .detail-param .content ul:after, .user-cont:after, .user-cont .main-list:after, .user-cont .main-table:after, .user-cont .main-content h2:after, .user-cont .main-list h2:after, .user-cont .main-table h2:after {
     clear: both; }
 
-.header .menu .nav a, .pager .page-info, .pager span, .pager a, .pager .text, .pager .btn, .pager .page-direct, .lists .box .link a, .list-cont .filter .filter-box .sort a, .list-cont .filter .filter-box .search .text, .list-cont .filter .filter-box .search .button, .list-cont .filter .filter-box .date .text, .list-cont .filter .filter-box .date .button, .list-cont .filter .filter-box .select .text, .list-cont .filter .filter-box .select .button, .product-cont .detail-top .zoom-box .zoom-list a, .product-cont .detail-top .context .option dl dd a, .product-cont .detail-param .tab a, .pager .page-more span {
+.header .menu .nav a, .pager .page-info, .pager span, .pager a, .pager .text, .pager .btn, .pager .page-direct, .icon-tpl, .lists .box .link a, .list-cont .filter .filter-box .sort a, .list-cont .filter .filter-box .search .text, .list-cont .filter .filter-box .search .button, .list-cont .filter .filter-box .date .text, .list-cont .filter .filter-box .date .button, .list-cont .filter .filter-box .select .text, .list-cont .filter .filter-box .select .button, .product-cont .detail-top .zoom-box .zoom-list a, .product-cont .detail-top .context .option dl dd a, .product-cont .detail-param .tab a, .pager .page-more span {
   display: inline-block;
   zoom: 1;
   *display: inline; }
@@ -368,6 +368,10 @@ h2.crumb {
 
 .modal .btn-default {
   background: #fff; }
+
+.icon-tpl {
+  width: 16px;
+  height: 16px; }
 
 .lists {
   margin-bottom: 20px; }

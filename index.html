@@ -4,15 +4,60 @@
     <meta charset="utf-8"/>
     <title>demo index</title>
 
-    <link rel="stylesheet" href="./public/dist/css/pzwg.external.css"/>
-    <link rel="stylesheet" href="./public/dist/css/pzwg.pages.css"/>
+    <link rel="stylesheet" href="public/dist/css/gulp.external.css"/>
+    <link rel="stylesheet" href="public/dist/css/gulp.pages.css"/>
     
 </head>
 <body>
 
 
+<div class="container">
+    
+    <h2>bootstrap modal测试:</h2>
+    <p><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Launch demo modal
+    </button>
+    </p>
 
-<script src="public/dist/js/pzwg.bundle.js"></script>
+
+    <h2>jquery plugins 测试:</h2>
+
+    <p>
+        时间筛选：
+        <input type="text" name="date-start" id="date-start" class="text">
+        <span> - </span>
+        <input type="text" name="date-end" id="date-end" class="text">
+    </p>
+
+    <h2>css sprite 测试：</h2>
+    <p>
+        <span class="icon-tpl icon-article-circle"></span>
+        <span class="icon-tpl icon-language"></span>
+    </p>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="public/dist/js/gulp.bundle.js"></script>
 <script>
     $(function () {
         require('index');

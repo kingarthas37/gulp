@@ -7,5 +7,6 @@ require('jquery-lazyload');
 require('jquery-zoom');
 require('jquery-validate');
 require('jquery-zclip');
-require('flash-detect')
+require('jquery-datetimepicker');
+require('flash-detect');
 require('swfobject');

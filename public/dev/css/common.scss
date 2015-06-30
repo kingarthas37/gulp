@@ -496,3 +496,10 @@ h2.crumb {
   }
   
 }
+
+
+.icon-tpl {
+  width: 16px;
+  height: 16px;
+  @extend %inline-block;
+}
