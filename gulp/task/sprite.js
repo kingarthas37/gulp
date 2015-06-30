@@ -47,9 +47,8 @@ gulp.task('sprite', function () {
 //        }
 
         var spriteData = gulp.src(path.join(spriteDir,'*.png'))
-          //  .pipe(gulpif(hashedSpriteName != '', newer(path.join(spriteBaseDir, hashedSpriteName))))
+            .pipe(newer(config.path.spriteDist))
             .pipe(spritesmith(options));
-        
         
         
         spriteData.img
@@ -62,7 +61,7 @@ gulp.task('sprite', function () {
            // .pipe(size())
            // .pipe(rev.manifest(manifestPath, {merge: true }))
            // .pipe(gulp.dest('.'))
-            .on('end', function() { 
+            .on('end', function() {
                 spriteData.css
                   //  .pipe(fingerprint(manifestPath))
                     .pipe(gulp.dest(path.join(config.path.cssDev, 'sprites')));

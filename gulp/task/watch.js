@@ -8,4 +8,5 @@ var config = require('../../package.json');
 gulp.task('watch', ['browserify'], function () {
     // Watch .scss files
     gulp.watch(config.path.cssDev + '**/*.scss', ['css']);
+    gulp.watch(config.path.spriteDev + '**/*.png' , ['sprite']);
 });
