@@ -1,0 +1,14 @@
+build/
+bin/
+.settings
+.idea/
+.project/
+nbproject
+.buildpath
+*.iml
+*.swp
+*.un~
+.DS_Store
+
+node_modules/
+**/node_modules/

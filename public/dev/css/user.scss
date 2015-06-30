@@ -1,0 +1,191 @@
+.user-cont {
+  
+  @extend %clearfix;
+  margin-bottom: 30px;
+  
+  .side-bar {
+    float: left;
+    width:200px;
+    border:1px solid $borderColor;
+    border-bottom: none;
+    h1 {
+      font-size: 25px;
+      margin:0;
+      height: 60px;
+      line-height: 60px;
+      padding-left: 30px;
+      font-weight: normal;
+      color:$color666;
+      border-bottom: 1px solid $borderColor;
+    }
+    a {
+      display: block;
+      font-size: 16px;
+      color:$color666;
+      border-bottom: 1px solid $borderColor;
+      span {
+        display: block;
+        height: 64px;
+        line-height: 64px;
+        border-left: 3px solid #fff;
+        padding-left: 30px;
+      }
+      &:hover {
+        text-decoration: none;
+        color:$colorUserHref;
+      }
+      &.cur {
+        span {
+          border-left-color: $colorUserBtnBgColor;
+        }
+
+      }
+    }
+  }
+  
+  .main-content {
+    
+    float: right;
+    width:740px;
+    border:1px solid $borderColor;
+    padding: 0 10px 20px;
+ 
+  }
+  
+  .main-list {
+
+    float: right;
+    width:740px;
+    border:1px solid $borderColor;
+    padding: 0 10px 20px;
+    
+    @extend %clearfix;
+
+    @extend %listTpl;
+    
+    .check-box {
+      position: absolute;
+      top:0;
+      left:0;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      border: 1px solid #fff;
+      text-align: center;
+      background: #fff;
+      margin-bottom: 0;
+      input {
+        margin: 0;
+      }
+      
+      &:hover {
+        border: 1px solid #ddd;
+      }
+    }
+    
+  }
+  
+  .main-table {
+    
+    float: right;
+    width:740px;
+    border:1px solid $borderColor;
+    padding: 0 10px 20px;
+    
+    @extend %clearfix;
+
+    .table-header {
+      float: right;
+      text-align: right;
+
+      .btn {
+        color:#fff;
+        border: none;
+        margin-right: 20px;
+
+        &.add {
+          background: #77c78a;
+        }
+
+        &.edit {
+          background: #f2c17f;
+        }
+
+        &.delete {
+          background: #ee8798;
+        }
+      }
+
+    }
+
+    .table {
+      color:$color999;
+      tr {
+        cursor:default;
+        &:hover {
+          td {
+            background: #fff3f3;
+          }
+        }
+      }
+      th {
+        font-size: 14px;
+        color:$color666;
+        border-bottom: 2px solid $red;
+        text-align: center;
+      }
+      td {
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        font-size: 12px;
+      }
+    }
+    
+  }
+  
+  .main-content,.main-list,.main-table {
+    h2 {
+      font-size: 20px;
+      height: 60px;
+      line-height: 60px;
+      border-bottom: 1px solid #ddd;
+      margin: 0 0 20px 0;
+      font-weight: normal;
+      @extend %clearfix;
+    }
+  } 
+  
+}
+
+.pager {
+  .page-more {
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    
+    em {
+      border-right: 1px solid #ddd;
+      margin:0 10px;
+    }
+    
+    label {
+      font-size: 12px;
+      margin-bottom: 0;
+      line-height: 28px;
+      input {
+        margin: 0;
+      }
+    }
+    
+    span {
+      @extend %inline-block;
+      padding: 0;
+      border: none;
+      a {
+        color: $red;
+        padding: 0;
+        border: none;
+      }
+    }
+  }
+}

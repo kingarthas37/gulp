@@ -1,0 +1,128 @@
+.lists {
+
+  @extend %clearfix;
+  margin-bottom: 20px;
+
+  .box {
+
+    width: 223px;
+    padding: 10px;
+    height: 380px;
+    border: 1px solid #fff;
+    float: left;
+
+    .img-box {
+      width: 223px;
+      height: 223px;
+      position: relative;
+      overflow: hidden;
+      &:hover {
+        .tip {
+          bottom: 0;
+        }
+      }
+    }
+    
+    .img {
+      
+      @include align-img(223px,223px);
+      overflow: hidden;
+      position: relative;
+
+      em {
+        position: absolute;
+        background: url("../images/list-tag.png") no-repeat;
+        width: 52px;
+        height: 52px;
+        right:10px;
+        top:0;
+        color: #fff;
+        line-height: 52px;
+        text-align: center;
+        font-size: 14px;
+        font-style: normal;
+      }
+
+    }
+
+    .tip {
+      transition: all ease-in .1s;
+      position: absolute;
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      @extend %clearfix;
+      @include bg-rgba(#e4393c,0.8);
+      bottom: -30px;
+      left: 0;
+      right:0;
+      padding-left: 6px;
+      font-size: 12px;
+      a {
+        display: inline;
+        color: #fff;
+        margin-right: 6px;
+      }
+      span {
+        float: left;
+        &.copy-text {
+          float: right;
+          padding-left: 6px;
+        }
+      }
+    }
+
+    .price {
+      font-family: Verdana;
+      font-size: 20px;
+      color: $red;
+      padding-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    dl {
+      margin: 0 0 10px 0;
+    }
+
+    dt {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: normal;
+      height: 24px;
+      line-height: 24px;
+    }
+
+    dd {
+      margin: 0;
+      height: 20px;
+      line-height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      strong {
+        color: $red;
+      }
+    }
+
+    .link {
+      a {
+        @extend %inline-block;
+        padding: 0 6px;
+        height: 24px;
+        line-height: 24px;
+        border: 1px solid #ddd;
+        &:hover {
+          border-color: $red;
+        }
+      }
+    }
+
+    &:hover {
+      border: 1px solid #ddd;
+      box-shadow: 0 0 4px 4px #f8f8f8;
+    }
+
+  }
+
+}

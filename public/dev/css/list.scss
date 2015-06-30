@@ -1,0 +1,124 @@
+.list-cont {
+
+  .filter {
+
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+    background: #f1f1f1;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    
+    
+    .filter-panel {
+      @extend %clearfix;
+    }
+
+    .filter-box {
+
+      float: left;
+      @extend %clearfix;
+
+      .sort {
+        float: left;
+        margin-right: 20px;
+        font-size: 0;
+        height: 40px;
+        line-height: 40px;
+        a {
+          font-size: 12px;
+          @extend %inline-block;
+          vertical-align: middle;
+          width: 55px;
+          height: 25px;
+          line-height: 25px;
+          border: 1px solid #cccccc;
+          background: #fff;
+          text-align: center;
+          color: #333;
+          background-image: url('../images/ico-filter-down.png');
+          background-repeat: no-repeat;
+          background-position: 40px center;
+
+          &.up {
+            background-image: url('../images/ico-filter-up.png');
+            &.cur {
+              background-image: url('../images/ico-filter-down.png');
+            }
+          }
+
+          &.cur {
+            border-color: $red;
+            color: #fff;
+            background-color: $red;
+            background-image: url('../images/ico-filter-down-hover.png');
+            &.up {
+              background-image: url('../images/ico-filter-up-hover.png');
+            }
+          }
+        }
+      }
+
+      .search,.date,.select {
+        float: left;
+        height: 40px;
+        line-height: 40px;
+        margin-right: 20px;
+        .text, .button {
+          @extend %inline-block;
+          vertical-align: middle;
+          width: 55px;
+          height: 25px;
+          line-height: 25px;
+          border: 1px solid #cccccc;
+          margin: 0;
+          padding: 0;
+          border-radius: 0;
+        }
+        .button {
+          border: none;
+          font-size: 12px;
+          color: #fff;
+          background-color: $red;
+        }
+        
+        &.date {
+          .text {
+            width: 100px;
+          }
+        }
+        
+        &.select {
+          select {
+            height: 25px;
+            line-height: 25px;
+            margin-bottom: 0;
+          }
+        }
+
+      }
+
+    }
+
+    .page {
+      float: right;
+      height: 40px;
+      line-height: 40px;
+      color: #999;
+      a {
+        color: $red;
+      }
+      strong {
+        color: $red;
+      }
+      i {
+        font-family: simsun;
+        font-style: normal;
+      }
+    }
+
+  }
+
+  @extend %listTpl;
+
+}

@@ -1,0 +1,127 @@
+%fonts {
+  font-family:'\5FAE\8F6F\96C5\9ED1',Arial;
+}
+
+%clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  *zoom:1;
+}
+
+%inline-block {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+
+%text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin opacity ($value) {
+  opacity: $value;
+  filter:alpha(opacity=#{$value * 100});
+}
+
+
+@mixin bg-rgba($color,$alpha) {
+  background: rgba($color,$alpha);
+  filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#{ie-hex-str(rgba($color,$alpha))}', endColorstr='#{ie-hex-str(rgba($color,$alpha))}');
+}
+
+ 
+@mixin triangle ($size, $color, $direction) {
+  height: 0;
+  width: 0;
+  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+    border-color: transparent;
+    border-style: solid;
+    border-width: $size / 2;
+
+    @if $direction == up {
+      border-bottom-color: $color;
+
+    } @else if $direction == right {
+      border-left-color:   $color;
+
+    } @else if $direction == down {
+      border-top-color:    $color;
+
+    } @else if $direction == left {
+      border-right-color:  $color;
+    }
+  }
+
+  @else if ($direction == up-right) or ($direction == up-left) {
+    border-top: $size solid $color;
+
+    @if $direction == up-right {
+      border-left:  $size solid transparent;
+
+    } @else if $direction == up-left {
+      border-right: $size solid transparent;
+    }
+  }
+
+  @else if ($direction == down-right) or ($direction == down-left) {
+    border-bottom: $size solid $color;
+
+    @if $direction == down-right {
+      border-left:  $size solid transparent;
+
+    } @else if $direction == down-left {
+      border-right: $size solid transparent;
+    }
+  }
+}
+
+@mixin image-2x($image, $width, $height) {
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 2dppx),
+  only screen and (min-resolution: 192dpi) {
+    background-image: url($image);
+    background-size: $width $height;
+  }
+}
+
+@mixin gradient($color1,$color2) {
+  background: -moz-linear-gradient(top,$color1,$color2);
+  background: -webkit-gradient(linear,0 0,0 100%,from($color1),to($color2));
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#{$color1}, endColorstr=#{$color2});
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$color1}, endColorstr=#{$color2})";
+}
+
+
+@mixin align-img($width,$height) {
+  width: $width;
+  height: $height;
+  text-align: center;
+  display:table;
+  table-layout:fixed;
+  *overflow: hidden;
+  *font-size:$height;
+  *line-height: 1;
+  a {
+    width: $width;
+    height: $height;
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+  }
+  img {
+    max-width:$width;
+    max-height:$height;
+  }
+}

@@ -1,0 +1,259 @@
+.product-cont {
+
+  .detail-top {
+    @extend %clearfix;
+    margin-bottom: 20px;
+    
+    .zoom-box {
+      float: left;
+      width: 350px;
+      
+      .jqzoom {
+        margin-bottom: 10px;
+      }
+      
+      .zoom-list {
+        font-size: 0;
+        a {
+          @extend %inline-block;
+          margin-bottom: 10px;
+          width: 70px;
+          text-align: center;
+          img {
+            border: 2px solid #fff;
+            width: 50px;
+          }
+          &.cur {
+            img {
+              border-color: $red;
+            }
+          }
+        }
+      }
+      
+    }
+    
+    .context {
+      width: 610px;
+      float: right;
+      
+      h2 {
+        color: #666;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 24px;
+      }
+      
+      h4 {
+        color: $red;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      
+      .price {
+        
+        background: #f7f7f7;
+        padding: 15px;
+        position: relative;
+        margin-bottom: 20px;
+        
+        dl {
+          @extend %clearfix;
+          margin: 0 0 10px 0;
+          dt {
+            width: 60px;
+            float: left;
+            font-weight: normal;
+            text-align: right;
+            height: 24px;
+            line-height: 24px;
+          }
+          dd {
+            width:400px;
+            float: left;
+            line-height: 24px;
+            strong {
+              color: $red;
+              font-size: 20px;
+            }
+            b {
+              color: #fff;
+              background: $red;
+              padding: 2px;
+              font-weight: normal;
+              margin-right: 5px;
+            }
+            p {
+              margin: 0;
+            }
+            span {
+              color: $red;
+            }
+          }
+        }
+        
+        .comment {
+          position: absolute;
+          top:10px;
+          right: 10px;
+          strong {
+            color: $red;
+          }
+        }
+        
+      }
+      
+      .option {
+
+        margin-bottom: 20px;
+        dl {
+          @extend %clearfix;
+          margin: 0 0 10px 0;
+          dt {
+            width: 70px;
+            float: left;
+            font-weight: normal;
+            text-align: right;
+            height: 24px;
+            line-height: 24px;
+          }
+          dd {
+            width: 500px;
+            float: left;
+            a {
+              padding: 4px;
+              border: 1px solid #ddd;
+              white-space: nowrap;
+              @extend %inline-block;
+              margin-bottom: 5px;
+              &:hover {
+                border-color: $red;
+                text-decoration: none;
+              }
+              &.cur {
+                color: $red;
+                border: 2px solid $red;
+              }
+            }
+          }
+        }
+        
+      }
+      
+      .button {
+        padding-left: 80px;
+        margin-bottom: 20px;
+        input {
+          font-size: 18px;
+          color: #fff;
+          background: $red;
+          padding: 10px 20px;
+          border: none;
+        }
+      }
+      
+    }
+    
+  }
+  
+  .detail-param {
+    margin-bottom: 20px;
+    .tab {
+      border-top:2px solid #999;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      background: #f7f7f7;
+      height: 38px;
+      line-height: 38px;
+      font-size: 0;
+      a {
+        @extend %inline-block;
+        font-size: 14px;
+        padding: 0 20px;
+        text-align: center;
+        margin-top: -2px;
+        border-right: 1px solid #ddd;
+        &.cur {
+          border-top: 2px solid $red;
+          background: #fff;
+        }
+      }
+    }
+    
+    .content {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-top: -1px;
+      ul {
+        @extend %clearfix;
+        li {
+          float: left;
+          width: 24%;
+          height: 30px;
+          line-height: 30px;
+        }
+      }
+    }
+    
+  }
+
+  .detail-content {
+
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 20px 0;
+    
+    .content {
+      width: 900px;
+      margin: auto;
+      font-size: 14px;
+    }
+    
+  }
+
+}
+
+
+
+
+
+/* product zoom */
+.jqzoom{
+  position:relative; 
+  cursor:pointer;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+
+.zoomdiv {
+  z-index: 100; 
+  position: absolute; 
+  top:0px; 
+  left:0px; 
+  width: 200px; 
+  height:200px; 
+  background: #fff; 
+  border:1px solid #ccc; 
+  display: none;
+  text-align: center;
+  overflow: hidden; 
+  img {
+    max-width: none;
+  }
+}
+ 
+.jqZoomPup{
+  z-index: 10;
+  visibility: hidden; 
+  position:absolute;
+  top:0px;
+  left:0px; 
+  border: 1px solid #fff;
+  background:#fff;
+  opacity: 0.5;
+  filter:alpha(opacity=50);
+}
+/* product zoom */

@@ -1,0 +1,498 @@
+html,body {
+  height:100%;
+}
+
+%wrap {
+  width: 980px;
+  margin: auto;
+  @extend %clearfix;
+}
+
+body {
+  font-size: 12px;
+  color: #888;
+}
+
+a {
+  color: #666;
+  &:hover {
+    color: $red;
+  }
+}
+
+ul,li {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+li {
+  list-style: none;
+}
+
+h3,h4 {
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  margin:0;
+}
+
+.topbar {
+  background: #f7f7f7;
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #eee;
+  text-align: right;
+  .wrap {
+    @extend %wrap;
+  }
+  i {
+    border-right: 1px solid #ddd;
+    margin: 0 6px;
+  }
+}
+
+.container {
+  @extend  %wrap;
+}
+
+.header {
+  
+  @extend %clearfix;
+  
+  .wrap {
+    padding-top: 15px;
+    height: 85px;
+  }
+  
+  .logo {
+    &:hover {
+      text-decoration: none;
+    }
+    width: 230px;
+    padding-left: 85px;
+    line-height: 63px;
+    height: 63px;
+    font-size: 14px;
+    overflow: hidden;
+    float: left;
+    background: url('../images/logo.png') no-repeat;
+    display: block;
+  }
+  
+  .search {
+    margin-left: 10px;
+    margin-top: 10px;
+    float: left;
+  }
+  
+  .search-box {
+    height: 30px;
+    border: 3px solid $red;
+    margin-bottom: 5px;
+    float: left;
+    @extend %clearfix;
+    input {
+      float: left;
+      height: 30px;
+      line-height: 30px;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      
+    }
+    .text {
+      width: 350px;
+      padding: 0 10px;
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+    .button {
+      width: 80px;
+      background: $red;
+      color: #fff;
+    }
+  }
+  
+  .hot-words {
+    clear: both;
+    a {
+      margin: 0 4px;
+      strong {
+        color: $red;
+        font-weight: normal;
+      }
+    }
+  }
+  
+  .menu {
+    
+    @extend %clearfix;
+ //  @include gradient(#E64346,#E13335);
+    background: #e13335;
+    
+    
+    height: 40px;
+
+    .nav {
+      float: left;
+      line-height: 40px;
+      margin: 0;
+      a {
+        color: #fff;
+        font-size: 14px;
+        @extend %inline-block;
+        padding: 0 30px;
+        &:hover {
+          background: #a40000;
+          text-decoration: none;
+        }
+      }
+    }
+    
+  }
+  
+  .category {
+    
+    float: left;
+    width: 200px;
+    background: #cd2a2c;
+    position: relative;
+    z-index: 101;
+    
+    h3 {
+      height: 40px;
+      line-height: 40px;
+      margin: 0;
+      position: relative;
+      a {
+        font-size: 14px;
+        color: #fff;
+        font-weight: bold;
+        display: block;
+        padding-left: 20px;
+        i {
+          position: absolute;
+          top:14px;
+          right: 10px;
+          width: 12px;
+          height: 12px;
+          background: url('../images/ico-menu-arrow-down.png');
+        }
+        
+      }
+      
+    }
+    
+    
+    ul.layer {
+
+      display: none;
+      width: 196px;
+      border: 2px solid $red;
+      border-top: none;
+      background: #fafafa;
+      position: absolute;
+      
+      li {
+        height: 30px;
+        position: relative;
+        
+        h4 {
+          line-height: 30px;
+          padding-left: 10px;
+          padding-right: 10px;
+          @extend %text-overflow;
+        }
+        
+        h4.hover {
+          display: none;
+          position: absolute;
+          height: 28px;
+          line-height: 28px;
+          top:0;
+          left:0;
+          border-top: 1px solid #ddd;
+          border-bottom: 1px solid #ddd;
+          width: 180px;
+          z-index: 2;
+          background: #fff;
+        }
+
+        div.layer {
+          display: none;
+          position: absolute;
+          z-index: 1;
+          width:400px;
+          padding: 10px 15px;
+          border: 1px solid #ddd;
+          background: #fff;
+          top: 0px;
+          left: 189px;
+           
+          
+          p {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            line-height: 24px;
+            strong {
+              color: $red;
+              font-weight: normal;
+            }
+            i {
+              border-left: 1px solid #eee;
+              margin: 0 8px;
+            }
+            &:last-child {
+              border: none;
+              margin-bottom: 0;
+              padding-bottom: 0;
+            }
+          }
+        }
+        
+        &:hover {
+          .hover {
+            display: block;
+          }
+         
+          div.layer {
+            display: block;
+          }
+        }
+      }
+      
+    }
+    
+    
+    
+    
+    &:hover {
+      ul.layer {
+        display: block;
+      }
+      h3 {
+        i {
+          background: url('../images/ico-menu-arrow-up.png');
+        }
+      }
+    }
+  }
+  
+
+}
+
+.pager {
+  
+  text-align: right;
+  
+  .page-info {
+    vertical-align: middle;
+    @extend %inline-block;
+  }
+
+  span,a,.text,.btn {
+    font-size: 12px;
+    @extend %inline-block;
+    vertical-align: middle;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    text-align: center;
+    border-radius: 0;
+  }
+
+  a {
+    color:#666;
+    &.cur {
+      font-weight: bold;
+      color:$red;
+    }
+  }
+
+  em {
+    color:#323232;
+    margin: 0 4px;
+    font-style: normal;
+  }
+
+  .page-direct {
+    vertical-align: middle;
+    @extend %inline-block;
+  }
+
+  .input-group {
+    .text {
+      margin: 0;
+      width: 30px;
+    }
+    .btn {
+      border:none;
+      background: $red;
+      color: #fff;
+      text-shadow: none;
+    }
+  }
+
+}
+
+h2.crumb {
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  text-align: left;
+  margin: 0;
+  font-weight: normal;
+  i {
+    padding:0 10px;
+    font-family: simsun;
+    font-style: normal;
+    font-size: 12px;
+  }
+  a {
+    strong {
+      color: $red;
+      font-weight: normal;
+    }
+  }
+}
+
+
+.footer {
+  border-top: 1px solid #ddd;
+  padding:20px 0;
+  color: #999;
+  text-align: center;
+  a {
+    
+  }
+  i {
+    border-right: 1px solid #ddd;
+    margin: 0 10px;
+  }
+}
+
+.form {
+ 
+  .form-control {
+    height: 30px;
+    margin-bottom: 4px;
+    @extend %clearfix;
+  }
+
+  .form-group {
+    position: relative;
+    height: 100px;
+    width: 400px;
+    margin: auto;
+    
+    > p {
+      font-size: 14px;
+      margin-bottom: 10px;
+      line-height: 20px;
+      margin-left: 80px;
+    }
+    
+    > .form-control {
+      margin-left: 80px;
+    }
+    
+    > .error {
+      margin-left: 80px;
+    }
+    
+    &.rows {
+      height: 60px;
+    }
+    
+  }
+
+  .btn-default {
+    padding: 6px 15px;
+    background: $red;
+    border-color:$red;
+    color: #fff;
+    width: 120px;
+  }
+  
+  .error {
+    color: $red;
+  }
+  
+  .row-left {
+    float: left;
+    width: 180px;
+    line-height: 30px;
+    text-align: right;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  
+  .row-right {
+    float: left;
+    line-height: 30px;
+    font-size: 14px;
+    margin-top: 20px;
+    input[type=text] {
+      width:60px;
+    }
+    input[type=checkbox] {
+      margin:0;
+    }
+    select {
+      width: 150px;
+    }
+  }
+  
+  .button-group {
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+}
+
+.modal {
+  .row {
+    margin: 0;
+    @extend %clearfix;
+    min-height: 60px;
+    
+    .col-md-4 {
+      width: 140px;
+      float: left;
+      text-align: right;
+      padding-right: 10px;
+      font-size: 14px;
+      padding-top: 4px;
+    }
+    .col-md-8 {
+      
+      width: 300px;
+      float: left;
+      .error {
+        font-size: 12px;
+        color: $red;
+        margin:0;
+      }
+    }
+  }
+  
+  .btn-primary {
+    background: $red;
+    border-color: $red;
+  }
+  
+  .btn-default {
+    background: #fff;
+  }
+  
+}

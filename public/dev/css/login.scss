@@ -1,0 +1,114 @@
+.login-cont {
+
+  background: url("../images/login-bg.jpg") no-repeat center;
+  height: 100%;
+  background-size: 100% 100%;
+  position: relative;
+
+  .frame {
+    width: 320px;
+    background: #fff;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-left: -220px;
+    margin-top: -150px;
+    padding: 30px 60px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+
+    .input-group {
+      margin-bottom: 30px;
+      width: 100%;
+      position: relative;
+      display: table;
+      border-collapse: separate;
+    }
+
+    label.error {
+      position: absolute;
+      left:0;
+      top:40px;
+      font-weight: normal;
+      color:red;
+    }
+
+    .input-group-addon {
+      background: none;
+      padding:0 20px;
+      border-top: none;
+      border-left:none;
+      border-right: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .form-control {
+      padding-left: 34px;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      box-shadow: none;
+      border-radius: 0;
+      width: 270px;
+      margin: 0;
+      height: 27px;
+    }
+
+    .username {
+      .form-control {
+        background: url("../images/icon-login-user.png") no-repeat left center;
+      }
+    }
+
+    .password {
+      .form-control {
+        background: url("../images/icon-login-pwd.png") no-repeat left center;
+      }
+    }
+
+    .savepassword {
+      margin-bottom: 20px;
+      padding-right: 20px;
+      label {
+        font-weight: normal;
+      }
+      input {
+        margin-left: 8px;
+        margin-right: 10px;
+      }
+    }
+
+    .btn-group {
+      width: 160px;
+      margin:auto;
+      display: block;
+      .btn {
+        width: 100%;
+        background:$red;
+        border-color: $red;
+        color:#fff;
+        height: 40px;
+        text-shadow: none;
+      }
+    }
+
+
+
+  }
+
+  .copyright {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom:20px;
+    color:#fff;
+    i {
+      padding-left:15px;
+      margin:0 10px;
+    }
+  }
+
+
+
+
+}
