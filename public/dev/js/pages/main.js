@@ -1,5 +1,6 @@
 require('../../../js/main');
 
+require('./index');
 require('./list');
 require('./detail');
 require('./login');
