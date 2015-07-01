@@ -15,6 +15,7 @@ var path = require('path');
 var fingerprint = require('gulp-fingerprint');
 var rimraf = require('gulp-rimraf');
 var through = require('through2');
+var merge = require('merge-stream');
 
 var config = require('../../package.json');
 var sprites = config.sprites;
@@ -24,77 +25,112 @@ var manifestPath = path.join(config.path.imageDist, 'image-manifest.json');
 
 gulp.task('sprite', function () {
     
+    _.each(sprites,function(params,name) {
+
+        var options = {
+            imgName: 'sprite-' + name + '.png',
+            imgPath: '../images/sprite-' + name + '.png',
+            cssName: name + '.scss',
+            cssFormat: 'css',
+        };
+        
+        var spriteName = options.imgName;
+        var spriteDir = path.join(config.path.spriteDev ,name);
+        var spriteBaseDir = path.dirname(spriteDir);
+
+        var spriteData = gulp.src(path.join(spriteDir,'*.png'))
+            .pipe(newer(path.join(config.path.imageDist,spriteName)))
+            .pipe(spritesmith(xtend(params,options)));
+
+        var imgStream = spriteData.img
+            .pipe(gulp.dest(config.path.imageDist));
+
+        var cssStream = spriteData.css
+            .pipe(gulp.dest(path.join(config.path.cssDev, 'sprites')));
+        
+        return merge(imgStream, cssStream);
+        
+    });
+    
+});
+
+
+
+
+gulp.task('sprite:dist', function () {
+
     _.each(sprites,function(type,name) {
 
         var options = {
-            imgName: name + '.png',
-            imgPath: '../images/sprites/' + name + '.png',
+            imgName: 'sprite-' + name + '.png',
+            imgPath: '../images/sprite-' + name + '.png',
             cssName: name + '.scss',
             cssFormat: 'css',
             padding:5
         };
-        
+
         var hashedSpriteName = '';
         var spriteName = options.imgName;
-        var spriteDir = path.join(config.path.spriteDev ,name);   
+        var spriteDir = path.join(config.path.spriteDev ,name);
         var spriteBaseDir = path.dirname(spriteDir);
-        
-        
+
+
 //        if(fs.existsSync(manifestPath)) {
 //            var manifest = require(path.resolve(manifestPath));
 //            hashedSpriteName = manifest[spriteName];
 //        }
 
-        var spriteData = gulp.src(path.join(spriteDir,'*.png'))
-            .pipe(newer(config.path.spriteDist))
+        var spriteData = gulp.src(path.join(spriteDir,'**/*'))
+        //    .pipe(newer(path.join(config.path.imageDist,spriteName)))
             .pipe(spritesmith(options));
-        
-        
+
         spriteData.img
-         //   .pipe(imagemin({
-          //      progressive: true,
-          //      use: [pngquant()]
-          //  }))
-          //  .pipe(rev())
-            .pipe(gulp.dest(config.path.spriteDist))
-           // .pipe(size())
-           // .pipe(rev.manifest(manifestPath, {merge: true }))
-           // .pipe(gulp.dest('.'))
+            //   .pipe(imagemin({
+            //      progressive: true,
+            //      use: [pngquant()]
+            //  }))
+            //  .pipe(rev())
+
+            .pipe(gulp.dest(config.path.imageDist))
+            // .pipe(size())
+            // .pipe(rev.manifest(manifestPath, {merge: true }))
+            // .pipe(gulp.dest('.'))
             .on('end', function() {
                 spriteData.css
-                  //  .pipe(fingerprint(manifestPath))
+                    //  .pipe(fingerprint(manifestPath))
                     .pipe(gulp.dest(path.join(config.path.cssDev, 'sprites')));
             });
-    
+
     });
-    
-        /*
-    _.each(config.sprites, function(sprite) {
-        
-        if(typeof sprite === 'string') {
-            // Use icon folder name as sprite name
-            var folderName = sprite.split(path.sep).pop();
-            var spiteOptions = {
-                spriteDir: sprite,
-                imgName: folderName + '.png',
-                cssName: folderName + '.scss',
-                cssFormat: 'css'
-            };
-            generateSprite(spiteOptions);    
-        } else if(typeof sprite === 'object') {
-            var folderName = sprite.src.split(path.sep).pop();
-            var spriteName = sprite.imgName ? sprite.imgName : folderName;
-            var spiteOptions = xtend({
-                spriteDir: sprite.src,
-                imgName: spriteName + '.png',
-                cssName: spriteName + '.scss',
-                cssFormat: 'css'
-            }, sprite);
-            generateSprite(spiteOptions);                    
-        }
-    });
-    */
+
+    /*
+     _.each(config.sprites, function(sprite) {
+
+     if(typeof sprite === 'string') {
+     // Use icon folder name as sprite name
+     var folderName = sprite.split(path.sep).pop();
+     var spiteOptions = {
+     spriteDir: sprite,
+     imgName: folderName + '.png',
+     cssName: folderName + '.scss',
+     cssFormat: 'css'
+     };
+     generateSprite(spiteOptions);    
+     } else if(typeof sprite === 'object') {
+     var folderName = sprite.src.split(path.sep).pop();
+     var spriteName = sprite.imgName ? sprite.imgName : folderName;
+     var spiteOptions = xtend({
+     spriteDir: sprite.src,
+     imgName: spriteName + '.png',
+     cssName: spriteName + '.scss',
+     cssFormat: 'css'
+     }, sprite);
+     generateSprite(spiteOptions);                    
+     }
+     });
+     */
 });
+
 
 
 function generateSprite(options) {
