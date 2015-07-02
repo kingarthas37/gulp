@@ -31,15 +31,11 @@ gulp.task('sprite', function () {
             imgName: 'sprite-' + name + '.png',
             imgPath: '../images/sprite-' + name + '.png',
             cssName: name + '.scss',
-            cssFormat: 'css',
+            cssFormat: 'css'
         };
-        
-        var spriteName = options.imgName;
-        var spriteDir = path.join(config.path.spriteDev ,name);
-        var spriteBaseDir = path.dirname(spriteDir);
 
-        var spriteData = gulp.src(path.join(spriteDir,'*.png'))
-            .pipe(newer(path.join(config.path.imageDist,spriteName)))
+        var spriteData = gulp.src(path.join(config.path.spriteDev ,name ,'*.png'))
+            .pipe(newer(path.join(config.path.imageDist,options.imgName)))
             .pipe(spritesmith(xtend(params,options)));
 
         var imgStream = spriteData.img
@@ -59,76 +55,28 @@ gulp.task('sprite', function () {
 
 gulp.task('sprite:dist', function () {
 
-    _.each(sprites,function(type,name) {
+    _.each(sprites,function(params,name) {
 
         var options = {
             imgName: 'sprite-' + name + '.png',
             imgPath: '../images/sprite-' + name + '.png',
             cssName: name + '.scss',
-            cssFormat: 'css',
-            padding:5
+            cssFormat: 'css'
         };
 
-        var hashedSpriteName = '';
-        var spriteName = options.imgName;
-        var spriteDir = path.join(config.path.spriteDev ,name);
-        var spriteBaseDir = path.dirname(spriteDir);
+        var spriteData = gulp.src(path.join(config.path.spriteDev ,name ,'*.png'))
+            .pipe(newer(path.join(config.path.imageDist,options.imgName)))
+            .pipe(spritesmith(xtend(params,options)));
 
+        var imgStream = spriteData.img
+            .pipe(gulp.dest(config.path.imageDist));
 
-//        if(fs.existsSync(manifestPath)) {
-//            var manifest = require(path.resolve(manifestPath));
-//            hashedSpriteName = manifest[spriteName];
-//        }
+        var cssStream = spriteData.css
+            .pipe(gulp.dest(path.join(config.path.cssDev, 'sprites')));
 
-        var spriteData = gulp.src(path.join(spriteDir,'**/*'))
-        //    .pipe(newer(path.join(config.path.imageDist,spriteName)))
-            .pipe(spritesmith(options));
-
-        spriteData.img
-            //   .pipe(imagemin({
-            //      progressive: true,
-            //      use: [pngquant()]
-            //  }))
-            //  .pipe(rev())
-
-            .pipe(gulp.dest(config.path.imageDist))
-            // .pipe(size())
-            // .pipe(rev.manifest(manifestPath, {merge: true }))
-            // .pipe(gulp.dest('.'))
-            .on('end', function() {
-                spriteData.css
-                    //  .pipe(fingerprint(manifestPath))
-                    .pipe(gulp.dest(path.join(config.path.cssDev, 'sprites')));
-            });
+        return merge(imgStream, cssStream);
 
     });
-
-    /*
-     _.each(config.sprites, function(sprite) {
-
-     if(typeof sprite === 'string') {
-     // Use icon folder name as sprite name
-     var folderName = sprite.split(path.sep).pop();
-     var spiteOptions = {
-     spriteDir: sprite,
-     imgName: folderName + '.png',
-     cssName: folderName + '.scss',
-     cssFormat: 'css'
-     };
-     generateSprite(spiteOptions);    
-     } else if(typeof sprite === 'object') {
-     var folderName = sprite.src.split(path.sep).pop();
-     var spriteName = sprite.imgName ? sprite.imgName : folderName;
-     var spiteOptions = xtend({
-     spriteDir: sprite.src,
-     imgName: spriteName + '.png',
-     cssName: spriteName + '.scss',
-     cssFormat: 'css'
-     }, sprite);
-     generateSprite(spiteOptions);                    
-     }
-     });
-     */
 });
 
 
