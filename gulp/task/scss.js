@@ -53,7 +53,7 @@ gulp.task('css:dist', ['css-common:dist'], function () {
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(rename(config.name + '.pages.css'))
-       // .pipe(minifyCss({compatibility: 'ie8'}))
+        .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('.'))
         .pipe(size())
         .pipe(gulp.dest(config.path.cssDist)) 
