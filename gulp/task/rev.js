@@ -30,24 +30,7 @@ var sprites = config.sprites;
  
 
 
-gulp.task('rev',['rev:image','clean'],function() {
-
-    if(!args.md5) {
-        return;
-    }
-
-    var revAll = new RevAll();
-    
-    return gulp.src([config.path.cssDist + '**',config.path.jsDist + '**'])
-        .pipe(revAll.revision())
-        .pipe(gulp.dest(path.join(config.path.assetMin)))
-        .pipe(revAll.manifestFile())
-        .pipe(gulp.dest(path.join(config.path.dist)));
-    
-});
-
-
-gulp.task('rev:image',function() {
+gulp.task('rev',['clean'],function() {
 
     if(!args.md5) {
         return;
@@ -55,47 +38,34 @@ gulp.task('rev:image',function() {
 
     var revAll = new RevAll();
 
-     return gulp.src([config.path.imageDist + '**'])
+    return gulp.src([path.join(config.path.imageDist,'**')])
         .pipe(revAll.revision())
         .pipe(gulp.dest(path.join(config.path.assetMin,'images')))
         .pipe(revAll.manifestFile())
         .pipe(gulp.dest(path.join(config.path.assetMin,'images')))
-         .on('end',function() {
+        .on('end',function() {
+            
+            var manifest = require(path.resolve(path.join(config.path.assetMin,'images','rev-manifest.json')));
 
-                 var manifest = require(path.resolve(path.join(config.path.assetMin,'images', 'rev-manifest.json')));
-
-                 gulp.src(config.path.cssDist + 'gulp.pages.css')
-                     .pipe(fingerprint(manifest,{
-                         base:'../images/',
-                         prefix: '../images/'
-                     }))
-                     .pipe(gulp.dest(config.path.assetMin + 'css1'));
-             
-             
-         });
-
-//    _.each(sprites,function(params,name) {
-//
-//        var options = {
-//            imgName: 'sprite-' + name + '.png',
-//            imgPath: '../images/sprite-' + name + '.png',
-//            cssName: name + '.scss',
-//            cssFormat: 'css'
-//        };
-//
-//        var spriteData = gulp.src(path.join(config.path.spriteDev ,name ,'*.png'))
-//            .pipe(newer(path.join(config.path.imageDist,options.imgName)))
-//            .pipe(spritesmith(xtend(params,options)));
-//
-//        var imgStream = spriteData.img
-//            .pipe(rev())
-//            .pipe(gulp.dest(config.path.imageDist));
-//
-//        var cssStream = spriteData.css
-//            .pipe(gulp.dest(path.join(config.path.cssDev, 'sprites')));
-//
-//        return merge(imgStream, cssStream);
-//
-//    });
+            gulp.src(path.join(config.path.cssDist,'**'))
+                .pipe(fingerprint(manifest,{
+                    base:'../images/',
+                    prefix: '../images/'
+                }))
+                .pipe(gulp.dest(config.path.cssDist))
+                .on('end',function() {
+                    
+                    gulp.src([config.path.cssDist + '**',config.path.jsDist + '**'])
+                        .pipe(revAll.revision())
+                        .pipe(gulp.dest(config.path.assetMin))
+                        .pipe(revAll.manifestFile())
+                        .pipe(gulp.dest(config.path.assetMin));
+                    
+                });
+            
+        });
     
 });
+
+
+ 

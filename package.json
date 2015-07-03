@@ -103,6 +103,6 @@
     "imageDist": "public/dist/images/",
     "spriteDev": "public/dev/images/sprites/",
     "spriteDist": "public/dist/images/sprites/",
-    "assetMin": "public/dist/min/"
+    "assetMin": "public/min/"
   }
 }
