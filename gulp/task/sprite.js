@@ -65,5 +65,4 @@ gulp.task('sprite:dist', function () {
         return merge(imgStream, cssStream);
 
     });
-    
 });

@@ -21,7 +21,7 @@ gulp.task('rev',['clean'],function() {
 
     var revImageAll = new RevAll();
 
-    return gulp.src([path.join(config.path.imageDist,'**')])
+    return gulp.src([path.join(config.path.imageMin,'**')])
         .pipe(revImageAll.revision())
         .pipe(gulp.dest(path.join(config.path.min,'images')))
         .pipe(revImageAll.manifestFile())
@@ -30,17 +30,17 @@ gulp.task('rev',['clean'],function() {
             
             var manifest = require(path.resolve(path.join(config.path.min,'images','rev-manifest.json')));
 
-            gulp.src(path.join(config.path.cssDist,'**'))
+            gulp.src(path.join(config.path.cssMin,'*.css'))
                 .pipe(fingerprint(manifest,{
                     base:'../images/',
                     prefix: '../images/'
                 }))
-                .pipe(gulp.dest(config.path.cssDist))
+                .pipe(gulp.dest(config.path.cssMin))
                 .on('end',function() {
                     
                     var revAll = new RevAll({ dontRenameFile: ['images/'] });
                     
-                    gulp.src([config.path.cssDist + '**',config.path.jsDist + '**'])
+                    gulp.src([config.path.cssMin + '*.css',config.path.jsMin + '*.js'])
                         .pipe(revAll.revision())
                         .pipe(gulp.dest(config.path.min))
                         .pipe(revAll.manifestFile())
@@ -51,6 +51,3 @@ gulp.task('rev',['clean'],function() {
         });
     
 });
-
-
- 
