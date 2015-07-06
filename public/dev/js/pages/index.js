@@ -3,6 +3,7 @@
 require('jquery-datetimepicker');
 
 console.info('index loaded~');
+console.info('sourcemap debug!! click');
 
 
 $('#date-start,#date-end').datetimepicker({

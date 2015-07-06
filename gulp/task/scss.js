@@ -32,7 +32,7 @@ gulp.task('css-common:dist',function() {
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('.'))
         .pipe(size())
-        .pipe(gulp.dest(config.path.cssDist));
+        .pipe(gulp.dest(config.path.cssMin));
 });
 
 // css pages
@@ -56,5 +56,5 @@ gulp.task('css:dist', ['css-common:dist'], function () {
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('.'))
         .pipe(size())
-        .pipe(gulp.dest(config.path.cssDist)) 
+        .pipe(gulp.dest(config.path.cssMin)) 
 });

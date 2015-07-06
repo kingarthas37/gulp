@@ -23,12 +23,12 @@ gulp.task('rev',['clean'],function() {
 
     return gulp.src([path.join(config.path.imageDist,'**')])
         .pipe(revImageAll.revision())
-        .pipe(gulp.dest(path.join(config.path.assetMin,'images')))
+        .pipe(gulp.dest(path.join(config.path.min,'images')))
         .pipe(revImageAll.manifestFile())
-        .pipe(gulp.dest(path.join(config.path.assetMin,'images')))
+        .pipe(gulp.dest(path.join(config.path.min,'images')))
         .on('end',function() {
             
-            var manifest = require(path.resolve(path.join(config.path.assetMin,'images','rev-manifest.json')));
+            var manifest = require(path.resolve(path.join(config.path.min,'images','rev-manifest.json')));
 
             gulp.src(path.join(config.path.cssDist,'**'))
                 .pipe(fingerprint(manifest,{
@@ -42,9 +42,9 @@ gulp.task('rev',['clean'],function() {
                     
                     gulp.src([config.path.cssDist + '**',config.path.jsDist + '**'])
                         .pipe(revAll.revision())
-                        .pipe(gulp.dest(config.path.assetMin))
+                        .pipe(gulp.dest(config.path.min))
                         .pipe(revAll.manifestFile())
-                        .pipe(gulp.dest(config.path.assetMin));
+                        .pipe(gulp.dest(config.path.min));
                     
                 });
             

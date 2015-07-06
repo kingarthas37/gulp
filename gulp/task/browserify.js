@@ -24,6 +24,7 @@ var pageScripts = fs.readdirSync(path.join(config.path.jsDev,'pages')).filter(on
 
 var browserifyDevPath = './' + config.path.jsDev;
 var browserifyDistPath = './' + config.path.jsDist;
+var browserifyMinPath = './' + config.path.jsMin;
 
 
 //dev task
@@ -77,7 +78,7 @@ gulp.task('browserify:dist', function () {
         
         b.plugin('factor-bundle', {
             e:[browserifyDevPath + 'common/main.js', browserifyDevPath + 'pages/main.js'],
-            o:[write(browserifyDistPath + config.name + '.common.js'), write(browserifyDistPath + config.name + '.pages.js')]})
+            o:[write(browserifyMinPath + config.name + '.common.js'), write(browserifyMinPath + config.name + '.pages.js')]})
             .bundle()
             .pipe(write(config.name + '.external.js'));
         
@@ -92,7 +93,7 @@ gulp.task('browserify:dist', function () {
                 .pipe(sourcemaps.init({loadMaps: true}))
                 .pipe(uglify())
                 .pipe(sourcemaps.write('.'))
-                .pipe(gulp.dest(browserifyDistPath))
+                .pipe(gulp.dest(browserifyMinPath))
         });
     }
 

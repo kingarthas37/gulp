@@ -4,8 +4,8 @@
     <meta charset="utf-8"/>
     <title>demo index</title>
 
-    <link rel="stylesheet" href="public/dist/css/gulp.external.css"/>
-    <link rel="stylesheet" href="public/dist/css/gulp.pages.css"/>
+    <link rel="stylesheet" href="public/min/css/gulp.external.css"/>
+    <link rel="stylesheet" href="public/min/css/gulp.pages.css"/>
     
 </head>
 <body>
@@ -18,7 +18,6 @@
         Launch demo modal
     </button>
     </p>
-
 
     <h2>jquery plugins 测试:</h2>
 
@@ -62,7 +61,9 @@
 </div>
 
 
-<script src="public/dist/js/gulp.bundle.js"></script>
+<script src="public/min/js/gulp.external.js"></script>
+<script src="public/min/js/gulp.common.js"></script>
+<script src="public/min/js/gulp.pages.js"></script>
 <script>
     $(function () {
         require('index');

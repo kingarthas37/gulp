@@ -21,5 +21,5 @@ gulp.task('image:dist', function () {
             progressive: true,
             use: [pngquant()]
         }))
-        .pipe(gulp.dest(config.path.imageDist));
+        .pipe(gulp.dest(config.path.imageMin));
 });
