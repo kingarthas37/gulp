@@ -5,12 +5,12 @@ var path = require('path');
 var gulp = require('gulp');
 var RevAll = require('gulp-rev-all');
 var fingerprint = require('gulp-fingerprint');
+var async = require('async');
 
 var args = require('../util/arg-parse');
 var config = require('../../package.json');
 
 var sprites = config.sprites;
- 
 
 
 gulp.task('rev',['clean'],function() {
@@ -19,15 +19,23 @@ gulp.task('rev',['clean'],function() {
         return;
     }
 
-    var revImageAll = new RevAll();
-
-    return gulp.src([path.join(config.path.imageMin,'**')])
-        .pipe(revImageAll.revision())
-        .pipe(gulp.dest(path.join(config.path.min,'images')))
-        .pipe(revImageAll.manifestFile())
-        .pipe(gulp.dest(path.join(config.path.min,'images')))
-        .on('end',function() {
+    async.series([
+    
+        function(cb) {
             
+            var revAll = new RevAll();
+            
+            gulp.src([path.join(config.path.imageMin,'**')])
+                .pipe(revAll.revision())
+                .pipe(gulp.dest(path.join(config.path.min,'images')))
+                .pipe(revAll.manifestFile())
+                .pipe(gulp.dest(path.join(config.path.min,'images')))
+                .on('end',cb);
+            
+        },
+        
+        function(cb) {
+
             var manifest = require(path.resolve(path.join(config.path.min,'images','rev-manifest.json')));
 
             gulp.src(path.join(config.path.cssMin,'*.css'))
@@ -36,18 +44,54 @@ gulp.task('rev',['clean'],function() {
                     prefix: '../images/'
                 }))
                 .pipe(gulp.dest(config.path.cssMin))
-                .on('end',function() {
-                    
-                    var revAll = new RevAll({ dontRenameFile: ['images/'] });
-                    
-                    gulp.src([config.path.cssMin + '*.css',config.path.jsMin + '*.js'])
-                        .pipe(revAll.revision())
-                        .pipe(gulp.dest(config.path.min))
-                        .pipe(revAll.manifestFile())
-                        .pipe(gulp.dest(config.path.min));
-                    
-                });
+                .on('end',cb);
             
-        });
+        },
+        function(cb) {
+
+            var revAll = new RevAll({ dontRenameFile: ['images/'] });
+
+            gulp.src([config.path.cssMin + '**',config.path.jsMin + '**'])
+                .pipe(revAll.revision())
+                .pipe(gulp.dest(config.path.min))
+                .pipe(revAll.manifestFile())
+                .pipe(gulp.dest(config.path.min));
+        }
+        
+    ],
+    function(err) {
+        console.info(err);
+    });
+            
+    return gulp;
+            
+//    return gulp.src([path.join(config.path.imageMin,'**')])
+//        .pipe(revImageAll.revision())
+//        .pipe(gulp.dest(path.join(config.path.min,'images')))
+//        .pipe(revImageAll.manifestFile())
+//        .pipe(gulp.dest(path.join(config.path.min,'images')))
+//        .on('end',function() {
+//            
+//            var manifest = require(path.resolve(path.join(config.path.min,'images','rev-manifest.json')));
+//            
+//            gulp.src(path.join(config.path.cssMin,'*.css'))
+//                .pipe(fingerprint(manifest,{
+//                    base:'../images/',
+//                    prefix: '../images/'
+//                }))
+//                .pipe(gulp.dest(config.path.cssMin))
+//                .on('end',function() {
+//                    
+//                    var revAll = new RevAll({ dontRenameFile: ['images/'] });
+//                    
+//                    gulp.src([config.path.cssMin + '*.css',config.path.jsMin + '*.js'])
+//                        .pipe(revAll.revision())
+//                        .pipe(gulp.dest(config.path.min))
+//                        .pipe(revAll.manifestFile())
+//                        .pipe(gulp.dest(config.path.min));
+//                    
+//                });
+//            
+//        });
     
 });

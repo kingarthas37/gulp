@@ -39,7 +39,9 @@ gulp.task('clean', function () {
 
     if(unlinkArr.length) {
         for(var i=0; i< unlinkArr.length;i++) {
-            fs.unlinkSync(path.join(config.path.min,unlinkArr[i]));
+            if(fs.existsSync(path.join(config.path.min,unlinkArr[i]))) {
+                fs.unlinkSync(path.join(config.path.min,unlinkArr[i]));
+            }
         }
     }
     
