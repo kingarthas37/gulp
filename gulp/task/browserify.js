@@ -10,21 +10,21 @@ var source = require('vinyl-source-stream');
 var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var factor = require('factor-bundle');
-var concat = require('concat-stream');
+var concat = require('gulp-concat');
+var concatStream = require('concat-stream');
 var file = require('gulp-file');
 var buffer = require('vinyl-buffer');
 var transform = require('vinyl-transform');
 var sourcemaps = require('gulp-sourcemaps');
+var async = require('async');
+var clean = require('gulp-clean');
 
 
 var config = require('../../package.json');
 var onlyScripts = require('../util/script-filter');
 
 var pageScripts = fs.readdirSync(path.join(config.path.jsDev,'pages')).filter(onlyScripts);
-
-var browserifyDevPath = './' + config.path.jsDev;
-var browserifyDistPath = './' + config.path.jsDist;
-var browserifyMinPath = './' + config.path.jsMin;
+ 
 
 
 //dev task
@@ -33,7 +33,7 @@ gulp.task('browserify', function () {
         cache: {},
         packageCache: {},
         fullPaths: false,
-        entries: [browserifyDevPath + 'common/main.js'],
+        entries: [path.resolve(config.path.jsDev,'common/main.js')],
         debug: true
     });
 
@@ -41,14 +41,14 @@ gulp.task('browserify', function () {
 
     pageScripts.forEach(function(page) {
         if(page !== 'main.js') {
-            w.require(browserifyDevPath + 'pages/' + page, {expose:page.replace(/\.js$/,'')});
+            w.require(path.resolve(config.path.jsDev,'pages',page),{expose:page.replace(/\.js$/,'')});
         }
     });
     
     var bundle = function () {
         w.bundle()
             .pipe(source(config.name + '.bundle.js'))
-            .pipe(gulp.dest(browserifyDistPath));
+            .pipe(gulp.dest(path.resolve(config.path.jsDist)));
         return w;
     };
 
@@ -64,7 +64,7 @@ gulp.task('browserify', function () {
 gulp.task('browserify:dist', function () {
     
     var b = browserify({
-        entries: [browserifyDevPath + 'common/main.js',browserifyDevPath + 'pages/main.js'],
+        entries: [path.resolve(config.path.jsDev,'common/main.js'),path.resolve(config.path.jsDev,'pages/main.js')],
         debug: true
     });
 
@@ -72,31 +72,62 @@ gulp.task('browserify:dist', function () {
         
         pageScripts.forEach(function(page) {
             if(page !== 'main.js') {
-                b.require(browserifyDevPath + 'pages/' + page, {expose:page.replace(/\.js$/,'')});
+                b.require(path.resolve(config.path.jsDev,'pages/',page), {expose:page.replace(/\.js$/,'')});
             }
         });
         
         b.plugin('factor-bundle', {
-            e:[browserifyDevPath + 'common/main.js', browserifyDevPath + 'pages/main.js'],
-            o:[write(browserifyMinPath + config.name + '.common.js'), write(browserifyMinPath + config.name + '.pages.js')]})
+            e:[path.resolve(config.path.jsDev,'common/main.js'),path.resolve(config.path.jsDev,'pages/main.js')],
+            o:[write(config.name + '.common.js'), write(config.name + '.pages.js')]})
             .bundle()
             .pipe(write(config.name + '.external.js'));
         
         return b;
+        
     };
     
 
     function write(filepath) {
-        return concat(function (content) {
-            return file(path.basename(filepath), content, {src: true})
-                .pipe(buffer())
-                .pipe(sourcemaps.init({loadMaps: true}))
-                .pipe(uglify())
-                .pipe(sourcemaps.write('.'))
-                .pipe(gulp.dest(browserifyMinPath))
+        return concatStream(function (content) {
+
+            async.series([
+            
+                function(cb) {
+                    file(path.basename(filepath), content, {src: true})
+                        .pipe(buffer())
+                        .pipe(sourcemaps.init({loadMaps: true}))
+                        .pipe(uglify())
+                        .pipe(sourcemaps.write('.'))
+                        .pipe(gulp.dest(path.resolve(config.path.jsMin)))
+                        .on('end',function() {
+                            cb();
+                        })
+                },
+                
+                function(cb) {
+                    if(filepath === (config.name + '.external.js')) {
+                        gulp.src([config.path.jsMin + config.name + '.common.js',config.path.jsMin + config.name + '.pages.js'])
+                            .pipe(sourcemaps.init({loadMaps: true}))
+                            .pipe(concat(config.name + '.main.js'))
+                            .pipe(sourcemaps.write('.'))
+                            .pipe(gulp.dest(config.path.jsMin))
+                            .on('end',cb);
+                    }
+                },
+                function(cb) {
+                     gulp.src([
+                         config.path.jsMin + config.name + '.common.+(js|js.map)',
+                         config.path.jsMin + config.name + '.pages.+(js|js.map)'
+                     ], {read: false}) .pipe(clean());
+                }
+                
+            ],function(err) {
+                console.info(err);
+            });
+            
         });
     }
-
+    
     return bundle();
 
 });
