@@ -4,7 +4,7 @@ require('jquery-datetimepicker');
 
 console.info('index loaded~');
 console.info('sourcemap debug!! click');
-
+console.info('ok');
 
 $('#date-start,#date-end').datetimepicker({
     lang: 'ch',
