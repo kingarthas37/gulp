@@ -15,7 +15,7 @@ gulp.task('image', function () {
 });
 
 
-gulp.task('image:dist', function () {
+gulp.task('image:prod', function () {
     return gulp.src(config.path.imageDev + '**/*.+(jpg|jpeg|png|gif)')
         .pipe(imagemin({
             progressive: true,

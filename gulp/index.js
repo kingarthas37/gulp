@@ -19,5 +19,5 @@ if(args.env === 'dev') {
     gulp.task('default', ['image','sprite','css','browserify','watch']);
 } else if(args.env === 'prod') {
     //build task
-    gulp.task('default', ['image:dist','sprite:dist','css:dist','browserify:dist','rev']);
+    gulp.task('default', ['image:prod','sprite:prod','css:prod','browserify:prod','rev']);
 }

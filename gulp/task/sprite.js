@@ -41,7 +41,7 @@ gulp.task('sprite', function () {
 
 
 
-gulp.task('sprite:dist', function () {
+gulp.task('sprite:prod', function () {
 
     _.each(sprites,function(params,name) {
 

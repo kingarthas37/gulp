@@ -61,7 +61,7 @@ gulp.task('browserify', function () {
 
 
 //prod task
-gulp.task('browserify:dist', function () {
+gulp.task('browserify:prod', function () {
     
     var b = browserify({
         entries: [path.resolve(config.path.jsDev,'common/main.js'),path.resolve(config.path.jsDev,'pages/main.js')],
@@ -114,11 +114,12 @@ gulp.task('browserify:dist', function () {
                             .on('end',cb);
                     }
                 },
-                function(cb) {
-                     gulp.src([
-                         config.path.jsMin + config.name + '.common.+(js|js.map)',
-                         config.path.jsMin + config.name + '.pages.+(js|js.map)'
-                     ], {read: false}) .pipe(clean());
+                
+                function() {
+                    var unlinkArr = ['.common.js','.common.js.map','.pages.js','.pages.js.map'];
+                    for(var i=0;i<unlinkArr.length;i++) {
+                        fs.unlinkSync(config.path.jsMin + config.name + unlinkArr[i]);
+                    }
                 }
                 
             ],function(err) {

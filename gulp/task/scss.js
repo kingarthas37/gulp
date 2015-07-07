@@ -26,7 +26,7 @@ gulp.task('css-common',function() {
 
 
 // css common dist
-gulp.task('css-common:dist',function() {
+gulp.task('css-common:prod',function() {
     return gulp.src(config['css-common'])
         .pipe(sourcemaps.init())
         .pipe(concat(config.name + '.external.css'))
@@ -48,7 +48,7 @@ gulp.task('css',['css-common'], function () {
 });
 
 // css pages dist
-gulp.task('css:dist', ['css-common:dist'], function () {
+gulp.task('css:prod', ['css-common:prod'], function () {
       return gulp.src(path.join(config.path.cssDev,'main.scss'))
         .pipe(sourcemaps.init())
         .pipe(sass())

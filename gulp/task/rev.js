@@ -39,7 +39,7 @@ gulp.task('rev',['clean'],function() {
                 .pipe(gulp.dest(config.path.cssMin))
                 .on('end',cb);
         },
-        function(cb) {
+        function() {
             var revAll = new RevAll({ dontRenameFile: ['images/'] });
             gulp.src([config.path.cssMin + '*.+(css|map)',config.path.jsMin + '*.+(js|map)'])
                 .pipe(revAll.revision())
@@ -51,7 +51,7 @@ gulp.task('rev',['clean'],function() {
     function(err) {
         console.info(err);
     });
-            
+    
     return gulp;
     
 });
