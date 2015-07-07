@@ -11,6 +11,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var minifyCss = require('gulp-minify-css');
 var concat = require('gulp-concat');
+var clean = require('gulp-clean');
 
 var config = require('../../package.json');
 
@@ -48,7 +49,7 @@ gulp.task('css',['css-common'], function () {
 
 // css pages dist
 gulp.task('css:dist', ['css-common:dist'], function () {
-    return gulp.src(path.join(config.path.cssDev,'main.scss'))
+      return gulp.src(path.join(config.path.cssDev,'main.scss'))
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer())
@@ -56,5 +57,5 @@ gulp.task('css:dist', ['css-common:dist'], function () {
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('.'))
         .pipe(size())
-        .pipe(gulp.dest(config.path.cssMin)) 
+        .pipe(gulp.dest(config.path.cssMin));
 });

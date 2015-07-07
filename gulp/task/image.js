@@ -9,14 +9,14 @@ var config = require('../../package.json');
 
 
 gulp.task('image', function () {
-    return gulp.src(config.path.imageDev + '**/*')
+    return gulp.src(config.path.imageDev + '**/*.+(jpg|jpeg|png|gif)')
         .pipe(newer(config.path.imageDist))
         .pipe(gulp.dest(config.path.imageDist));
 });
 
 
 gulp.task('image:dist', function () {
-    return gulp.src(config.path.imageDev + '**/*')
+    return gulp.src(config.path.imageDev + '**/*.+(jpg|jpeg|png|gif)')
         .pipe(imagemin({
             progressive: true,
             use: [pngquant()]
