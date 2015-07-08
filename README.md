@@ -11,12 +11,6 @@ Install npm packages
 ```
   npm install
 ```
-
-Install bower packages
-```
-  bower install
-```
-
 Install Gulp Globally
 ```
   npm install -g gulp
