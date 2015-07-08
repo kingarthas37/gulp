@@ -1,15 +1,16 @@
 一个gulp综合实例
 ==================================
 
-> 一个gulp前端基础项目的构建配置实例
+> 一个基于gulp搭建的前端基础配置实例，基于browserify,sass
 
 ## 依赖
 - nodejs
 - gulp
 
 ## 主要模块
-- browserify
-- sass
+- [browserify](https://www.npmjs.com/package/browserify)
+- [sass](https://www.npmjs.com/package/gulp-sass)
+- [smithsprite](https://www.npmjs.com/package/gulp.spritesmith)
 
 ## 安装
 Install Gulp Globally
