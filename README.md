@@ -4,8 +4,8 @@
 > 一个基于gulp搭建的前端基础配置实例，基于browserify,sass
 
 ## 依赖
-- nodejs
-- gulp
+- [nodejs](https://nodejs.org/)
+- [gulp](https://www.npmjs.com/package/gulp)
 
 ## 主要模块
 - [browserify](https://www.npmjs.com/package/browserify)
