@@ -7,6 +7,10 @@
 - nodejs
 - gulp
 
+## 主要模块
+- browserify
+- sass
+
 ## 安装
 Install Gulp Globally
 ```
@@ -18,7 +22,12 @@ Install npm packages
 ```
 
 ## 运行
-1. 开发环境运行，包括browserify编译、sass编译、sprite图片合并等工作，并对css、js、images进行watch
+1. dev环境:包括browserify编译、sass编译、sprite图片合并等工作，并对css、js、images进行watch
 ```
   gulp
+```
+2. prod环境:用于生产环，境主要对js、css、image进行压缩、合并等工作  
+增加参数--env为prod即可，如果不添加此参数，默认则为dev环境
+```
+  gulp --env prod
 ```
