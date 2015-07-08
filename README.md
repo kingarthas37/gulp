@@ -18,3 +18,7 @@ Install npm packages
 ```
 
 ## 运行
+1. 开发环境运行，包括browserify编译、sass编译、sprite图片合并等工作，并对css、js、images进行watch
+```
+  gulp
+```
