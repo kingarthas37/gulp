@@ -5,14 +5,16 @@
 
 ## 依赖
 - nodejs
+- gulp
 
 ## 安装
-Install npm packages
-```
-  npm install
-```
 Install Gulp Globally
 ```
   npm install -g gulp
 ```
+Install npm packages
+```
+  npm install
+```
 
+## 运行
