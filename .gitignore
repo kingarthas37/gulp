@@ -13,5 +13,4 @@ nbproject
 node_modules
 **/node_modules
 
-public/dist
 public/min
