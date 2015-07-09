@@ -42,9 +42,9 @@ md5只依赖于生产环境,dev环境无法执行
 ```
 
 ## 运行过程
-1. 所有前端资源文件均在public目录下
-1. gulp目录为gulp开发代码，一般不需改动代码，直接配置package.json即可
-1. package.json管理所有资源配置文件，如下：
+* 所有前端资源文件均在public目录下
+* gulp目录为gulp开发代码，一般不需改动代码，直接配置package.json即可
+* package.json管理所有资源配置文件，如下：
 * dependencies:nodejs模块依赖
 * browser:browserify模块指定路径，前端模块使用，详情参考browserify文档
 - browserify-shim:把非commonjs的模块转换成commonjs模块
