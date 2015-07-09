@@ -47,11 +47,11 @@ md5只依赖于生产环境,dev环境无法执行
 * package.json管理所有资源配置文件，如下：
 * dependencies:nodejs模块依赖
 * browser:browserify模块指定路径，前端模块使用，详情参考browserify文档
-- browserify-shim:把非commonjs的模块转换成commonjs模块
-- css-common:指定common.css的引用，按array依次调用，最后合并成external.css
-- sprites:结合[smithsprite](https://www.npmjs.com/package/gulp.spritesmith)的图片合并参数，如common就生成common合并的sprite-common.png sprite图片，page则生成sprite-page.png
-- path: 用于gulp配置中的路径引用
-1. public目录结构：
+* browserify-shim:把非commonjs的模块转换成commonjs模块
+* css-common:指定common.css的引用，按array依次调用，最后合并成external.css
+* sprites:结合[smithsprite](https://www.npmjs.com/package/gulp.spritesmith)的图片合并参数，如common就生成common合并的sprite-common.png sprite图片，page则生成sprite-page.png
+* path: 用于gulp配置中的路径引用
+* public目录结构：
 - /css /js /swf /fonts 为框架、库文件，如jquery,bootstarp等
 - /dev 开发环境目录，所有开发文件，如sass，browserify都存放在此
 - /dist 执行gulp编译后的dev目标目录，生成未压缩合并的css,js,images文件
