@@ -51,4 +51,10 @@ md5只依赖于生产环境,dev环境无法执行
 - css-common:指定common.css的引用，按array依次调用，最后合并成external.css
 - sprites:结合[smithsprite](https://www.npmjs.com/package/gulp.spritesmith)的图片合并参数，如common就生成common合并的sprite-common.png sprite图片，page则生成sprite-page.png
 - path: 用于gulp配置中的路径引用
-1. 执行
+1. public目录结构：
+- /css /js /swf /fonts 为框架、库文件，如jquery,bootstarp等
+- /dev 开发环境目录，所有开发文件，如sass，browserify都存放在此
+- /dist 执行gulp编译后的dev目标目录，生成未压缩合并的css,js,images文件
+- /min 执行gulp --env prod后打包生成到prod目录，生成压缩合并后的css,js,images文件
+- 执行gulp --env prod --md5后生成md5戳随后也打包到/min目录下，同时生成/min/rev-mainifest.json, /images/rev-manifest.json文件供调用使用
+
