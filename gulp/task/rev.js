@@ -13,7 +13,7 @@ var config = require('../../package.json');
 var sprites = config.sprites;
 
 
-gulp.task('rev',['clean'],function() {
+gulp.task('rev',['sprite:prod','css:prod','browserify:prod','clean'],function() {
     
     if(!args.md5) {
         return;

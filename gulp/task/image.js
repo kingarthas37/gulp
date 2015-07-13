@@ -15,6 +15,7 @@ gulp.task('image', function () {
 });
 
 
+//image prod,增加imagemin图片压缩
 gulp.task('image:prod', function () {
     return gulp.src(config.path.imageDev + '**/*.+(jpg|jpeg|png|gif)')
         .pipe(imagemin({
