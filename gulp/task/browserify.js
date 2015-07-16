@@ -129,7 +129,7 @@ gulp.task('browserify:prod', function () {
                 
                 function() {
                     
-                    //合并完之后，讲common.js和pages.js删除
+                    //合并完之后，将common.js和pages.js删除
                     var unlinkArr = ['.common.js','.common.js.map','.pages.js','.pages.js.map'];
                     for(var i=0;i<unlinkArr.length;i++) {
                         fs.unlinkSync(config.path.jsMin + config.name + unlinkArr[i]);

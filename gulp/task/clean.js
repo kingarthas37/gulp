@@ -23,20 +23,23 @@ gulp.task('clean', function () {
     
     var unlinkArr = [];
     
-    if(fs.existsSync(path.join(config.path.min,'rev-manifest.json'))) {
+    //查找js,css md5
+    if(fs.existsSync(path.join(config.path.min,'asset-manifest.json'))) {
         var assetMap = require(path.resolve(path.join(config.path.min,'rev-manifest.json')));
         _.each(assetMap,function(value) {
             unlinkArr.push(value);
         });
     }
 
-    if(fs.existsSync(path.join(config.path.imageMin,'rev-manifest.json'))) {
+    //查找images md5
+    if(fs.existsSync(path.join(config.path.imageMin,'image-manifest.json'))) {
         var imageMap = require(path.resolve(path.join(config.path.imageMin,'rev-manifest.json')));
         _.each(imageMap,function(value) {
             unlinkArr.push(path.join('images',value));
         });
     }
 
+    //执行删除
     if(unlinkArr.length) {
         for(var i=0; i< unlinkArr.length;i++) {
             if(fs.existsSync(path.join(config.path.min,unlinkArr[i]))) {

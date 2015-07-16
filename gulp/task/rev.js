@@ -21,7 +21,9 @@ gulp.task('rev',['sprite:prod','css:prod','browserify:prod','clean'],function() 
 
     async.series([
         function(cb) {            
-            var revAll = new RevAll();
+            var revAll = new RevAll({
+                fileNameManifest:'image-manifest.json'
+            });
             gulp.src([path.join(config.path.imageMin,'**/*.+(jpg|jpeg|png|gif)'),'!' + path.join(config.path.imageMin,'sprites/**')])
                 .pipe(revAll.revision())
                 .pipe(gulp.dest(path.join(config.path.min,'images')))
@@ -40,7 +42,10 @@ gulp.task('rev',['sprite:prod','css:prod','browserify:prod','clean'],function() 
                 .on('end',cb);
         },
         function() {
-            var revAll = new RevAll({ dontRenameFile: ['images/'] });
+            var revAll = new RevAll({ 
+                dontRenameFile: ['images/'],
+                fileNameManifest:'asset-manifest.json'
+            });
             gulp.src([config.path.cssMin + '*.+(css|map)',config.path.jsMin + '*.+(js|map)'])
                 .pipe(revAll.revision())
                 .pipe(gulp.dest(config.path.min))
