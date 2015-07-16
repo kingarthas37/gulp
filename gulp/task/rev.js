@@ -12,14 +12,17 @@ var config = require('../../package.json');
 
 var sprites = config.sprites;
 
-
+//执行rev md5需要依赖所有的task
 gulp.task('rev',['sprite:prod','css:prod','browserify:prod','clean'],function() {
     
+    //如果命令没有加--md5则不执行rev操作
     if(!args.md5) {
         return;
     }
 
     async.series([
+        
+        //执行images/* rev到 min/images/image-manifest.json
         function(cb) {            
             var revAll = new RevAll({
                 fileNameManifest:'image-manifest.json'
@@ -31,8 +34,10 @@ gulp.task('rev',['sprite:prod','css:prod','browserify:prod','clean'],function() 
                 .pipe(gulp.dest(path.join(config.path.min,'images')))
                 .on('end',cb);
         },
+        
+        //读取image-manifest.json，然后使用fingerprint修改css里的对应image url
         function(cb) {
-            var manifest = require(path.resolve(path.join(config.path.min,'images','rev-manifest.json')));
+            var manifest = require(path.resolve(path.join(config.path.min,'images','image-manifest.json')));
             gulp.src(path.join(config.path.cssMin,'*.css'))
                 .pipe(fingerprint(manifest,{
                     base:'../images/',
@@ -41,8 +46,10 @@ gulp.task('rev',['sprite:prod','css:prod','browserify:prod','clean'],function() 
                 .pipe(gulp.dest(config.path.cssMin))
                 .on('end',cb);
         },
+        
+        //执行js,css rev到相应路径
         function() {
-            var revAll = new RevAll({ 
+            var revAll = new RevAll({
                 dontRenameFile: ['images/'],
                 fileNameManifest:'asset-manifest.json'
             });
