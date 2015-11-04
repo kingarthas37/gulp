@@ -10,7 +10,7 @@ nbproject
 *.un~
 .DS_Store
 
-node_modules
-**/node_modules
+node_modules/
 
-public/min
+
+public/dist/
