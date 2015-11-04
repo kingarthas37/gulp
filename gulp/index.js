@@ -3,16 +3,15 @@
 var gulp = require('gulp');
 var fs = require('fs');
 
-var onlyScripts = require('./util/script-filter');
 var args = require('./util/arg-parse');
 
-var tasks = fs.readdirSync('gulp/task').filter(onlyScripts);
-
-
-tasks.forEach(function(task) {
-    require('./task/' + task);
-});
-
+require('./task/browserify');
+require('./task/clean');
+require('./task/image');
+require('./task/rev');
+require('./task/scss');
+require('./task/sprite');
+require('./task/watch');
 
 if(args.env === 'dev') {
     //dev task

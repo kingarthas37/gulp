@@ -17,7 +17,6 @@ var buffer = require('vinyl-buffer');
 var transform = require('vinyl-transform');
 var sourcemaps = require('gulp-sourcemaps');
 var async = require('async');
-var clean = require('gulp-clean');
 
 
 var config = require('../../package.json');

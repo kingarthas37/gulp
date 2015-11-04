@@ -1,25 +1,6 @@
 .topbar .wrap, .container, .header, .header .search-box, .header .menu, .form .form-control, .modal .row, .lists, .lists .box .tip, .list-cont .filter .filter-panel, .list-cont .filter .filter-box, .product-cont .detail-top, .product-cont .detail-top .context .price dl, .product-cont .detail-top .context .option dl, .product-cont .detail-param .content ul, .user-cont, .user-cont .main-list, .user-cont .main-table, .user-cont .main-content h2, .user-cont .main-list h2, .user-cont .main-table h2 {
   *zoom: 1; }
-  .topbar .wrap:before, .container:before, .header:before,
-  .header .search-box:before,
-  .header .menu:before,
-  .form .form-control:before,
-  .modal .row:before,
-  .lists:before,
-  .lists .box .tip:before,
-  .list-cont .filter .filter-panel:before,
-  .list-cont .filter .filter-box:before,
-  .product-cont .detail-top:before,
-  .product-cont .detail-top .context .price dl:before,
-  .product-cont .detail-top .context .option dl:before,
-  .product-cont .detail-param .content ul:before,
-  .user-cont:before,
-  .user-cont .main-list:before,
-  .user-cont .main-table:before,
-  .user-cont .main-content h2:before,
-  .user-cont .main-list h2:before,
-  .user-cont .main-table h2:before,
-  .topbar .wrap:after, .container:after, .header:after, .header .search-box:after, .header .menu:after, .form .form-control:after, .modal .row:after, .lists:after, .lists .box .tip:after, .list-cont .filter .filter-panel:after, .list-cont .filter .filter-box:after, .product-cont .detail-top:after, .product-cont .detail-top .context .price dl:after, .product-cont .detail-top .context .option dl:after, .product-cont .detail-param .content ul:after, .user-cont:after, .user-cont .main-list:after, .user-cont .main-table:after, .user-cont .main-content h2:after, .user-cont .main-list h2:after, .user-cont .main-table h2:after {
+  .topbar .wrap:before, .container:before, .header:before, .header .search-box:before, .header .menu:before, .form .form-control:before, .modal .row:before, .lists:before, .lists .box .tip:before, .list-cont .filter .filter-panel:before, .list-cont .filter .filter-box:before, .product-cont .detail-top:before, .product-cont .detail-top .context .price dl:before, .product-cont .detail-top .context .option dl:before, .product-cont .detail-param .content ul:before, .user-cont:before, .user-cont .main-list:before, .user-cont .main-table:before, .user-cont .main-content h2:before, .user-cont .main-list h2:before, .user-cont .main-table h2:before, .topbar .wrap:after, .container:after, .header:after, .header .search-box:after, .header .menu:after, .form .form-control:after, .modal .row:after, .lists:after, .lists .box .tip:after, .list-cont .filter .filter-panel:after, .list-cont .filter .filter-box:after, .product-cont .detail-top:after, .product-cont .detail-top .context .price dl:after, .product-cont .detail-top .context .option dl:after, .product-cont .detail-param .content ul:after, .user-cont:after, .user-cont .main-list:after, .user-cont .main-table:after, .user-cont .main-content h2:after, .user-cont .main-list h2:after, .user-cont .main-table h2:after {
     content: "";
     display: table; }
   .topbar .wrap:after, .container:after, .header:after, .header .search-box:after, .header .menu:after, .form .form-control:after, .modal .row:after, .lists:after, .lists .box .tip:after, .list-cont .filter .filter-panel:after, .list-cont .filter .filter-box:after, .product-cont .detail-top:after, .product-cont .detail-top .context .price dl:after, .product-cont .detail-top .context .option dl:after, .product-cont .detail-param .content ul:after, .user-cont:after, .user-cont .main-list:after, .user-cont .main-table:after, .user-cont .main-content h2:after, .user-cont .main-list h2:after, .user-cont .main-table h2:after {
@@ -421,8 +402,8 @@ h2.crumb {
         font-size: 14px;
         font-style: normal; }
     .lists .box .tip {
-      -webkit-transition: all ease-in 0.1s;
-              transition: all ease-in 0.1s;
+      -webkit-transition: all ease-in .1s;
+              transition: all ease-in .1s;
       position: absolute;
       display: block;
       height: 30px;

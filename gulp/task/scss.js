@@ -6,12 +6,10 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var size = require('gulp-size');
 var rename = require('gulp-rename');
-var minimist = require('minimist');
 var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var minifyCss = require('gulp-minify-css');
 var concat = require('gulp-concat');
-var clean = require('gulp-clean');
 
 var config = require('../../package.json');
 
