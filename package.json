@@ -35,7 +35,7 @@
     "imagemin-pngquant": "~4.2.0",
     "merge-stream": "^1.0.0",
     "minimist": "~1.2.0",
-    "node-array": "~0.0.7",
+    "node-array": "0.0.7",
     "q": "~1.4.0",
     "through2": "^2.0.0",
     "underscore": "~1.8.0",
@@ -71,14 +71,16 @@
     "public/css/bootstrap.min.css",
     "public/css/jquery.datetimepicker.css"
   ],
-  "sprites": {
-    "common": {
+  "sprites": [
+    {
+      "name": "common",
       "algorithm": "binary-tree"
     },
-    "page": {
+    {
+      "name": "page",
       "algorithm": "binary-tree"
     }
-  },
+  ],
   "path": {
     "base": "public/",
     "dist": "public/dist",

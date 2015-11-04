@@ -2,17 +2,69 @@
 
 var gulp = require('gulp');
 var spritesmith = require('gulp.spritesmith');
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
 var xtend = require('xtend');
-var newer = require('gulp-newer');
 var path = require('path');
-var merge = require('merge-stream');
-var _ = require('underscore');
+var Q = require('q');
+var async = require('async');
+var Array = require('node-array');
+
+var args = require('../util/arg-parse');
 
 var config = require('../../package.json');
- 
+
+gulp.task('sprite',function () {
+
+    var deferred = Q.defer();
+
+    config.sprites.forEachAsync(function(sprite, index, arr, next) {
+
+        var options = (function() {
+            return xtend({
+                spriteDir: sprite.src,
+                imgName: 'sprite-' + sprite.name + '.png',
+                imgPath: '../images/sprite-' + sprite.name + '.png',
+                cssName: sprite.name + '.scss',
+                cssFormat: 'css'
+            }, sprite);
+        })();
+
+        var spriteData = gulp.src(path.join(config.path.spriteDev ,sprite.name ,'*.png'))
+            .pipe(spritesmith(options));
+
+        async.series([
+            function(cb) {
+                //生成到dist/images目录
+                spriteData.img
+                    .pipe(gulp.dest(config.path.imageDist))
+                    .on('end',cb);
+            },
+            function () {
+                console.info('sprite');
+                //生成.scss到dev/css/sprites/目录
+                spriteData.css
+                    .pipe(gulp.dest(path.join(config.path.cssDev, 'sprites')))
+                    .on('end',next);
+            }
+        ]);
+
+        return true;
+
+    }, deferred.resolve);
+
+    return deferred.promise;
+
+});
+
+
+
+
+
+/*
 
 //images sprite dev
-gulp.task('sprite', function () {
+gulp.task('sprite1', function () {
     
     //遍历config.sprites下的配置,对应的key为sprites下的目录名，比如common,page,也可进行对中sprite设置
     //参照：https://www.npmjs.com/package/gulp.spritesmith
@@ -76,3 +128,5 @@ gulp.task('sprite:prod', function () {
 
     });
 });
+    
+*/

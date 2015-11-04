@@ -15,8 +15,8 @@ require('./task/watch');
 
 if(args.env === 'dev') {
     //dev task
-    gulp.task('default', ['image','sprite','css','browserify','watch']);
+    gulp.task('default', ['image','sprite','css-common','css','browserify','watch']);
 } else if(args.env === 'prod') {
     //build task
-    gulp.task('default', ['image:prod','sprite:prod','css:prod','browserify:prod','rev']);
+    gulp.task('default', ['image:prod','sprite:prod','css-common:prod','css:prod','browserify:prod','rev']);
 }

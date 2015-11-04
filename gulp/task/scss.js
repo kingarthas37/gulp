@@ -38,7 +38,8 @@ gulp.task('css-common:prod',function() {
 //页面级的css: name.pages.css,执行前先执行task 'css-common',入口为public/dev/css/main.sass
 //所有页面级的css管理都有main.scss控制
 //增加autoprefixer功能
-gulp.task('css',['css-common'], function () {
+gulp.task('css',['sprite'], function () {
+    console.info('css');
     return gulp.src(path.join(config.path.cssDev,'main.scss'))
         .pipe(sourcemaps.init())
         .pipe(sass())
@@ -50,7 +51,7 @@ gulp.task('css',['css-common'], function () {
 
 
 //页面级css的prod，原理同上，只增加了css压缩
-gulp.task('css:prod', ['css-common:prod'], function () {
+gulp.task('css:prod',['css-common:prod'], function () {
       return gulp.src(path.join(config.path.cssDev,'main.scss'))
         .pipe(sourcemaps.init())
         .pipe(sass())
