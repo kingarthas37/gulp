@@ -15,7 +15,7 @@ gulp.task('watch', ['css','browserify'], function () {
     
     if(args.sync) {
         browserSync.init([path.join(config.path.cssDist,'*.css'),path.join(config.path.jsDist,'*.js')],{
-            proxy: args.sync !== true ? args.sync : 'localhost:3200',
+            proxy: args.sync !== true ? args.sync : '10.140.110.55:8000',
             open:true
         });
     }
@@ -25,6 +25,6 @@ gulp.task('watch', ['css','browserify'], function () {
     //监听*.scss目录，执行task: css
     gulp.watch(config.path.cssDev + '**/*.scss', ['css']);
     //监听所有sprite目录，执行task:sprite
-    //gulp.watch(config.path.spriteDev + '**/*.png' , ['sprite']);
+    gulp.watch(config.path.spriteDev + '**/*.png' , ['sprite']);
     
 });

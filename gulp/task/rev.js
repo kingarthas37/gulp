@@ -13,13 +13,13 @@ var config = require('../../package.json');
 var sprites = config.sprites;
 
 //执行rev md5需要依赖所有的task
-gulp.task('rev',['sprite:prod','css:prod','browserify:prod','clean'],function() {
+gulp.task('rev',['clean:rev','image:prod','sprite:prod','css-common:prod','css:prod','browserify:prod'],function() {
     
     //如果命令没有加--md5则不执行rev操作
     if(!args.md5) {
         return;
     }
-
+     
     async.series([
         
         //执行images/* rev到 min/images/image-manifest.json

@@ -39,7 +39,6 @@ gulp.task('css-common:prod',function() {
 //所有页面级的css管理都有main.scss控制
 //增加autoprefixer功能
 gulp.task('css',['sprite'], function () {
-    console.info('css');
     return gulp.src(path.join(config.path.cssDev,'main.scss'))
         .pipe(sourcemaps.init())
         .pipe(sass())
