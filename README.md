@@ -57,4 +57,4 @@ md5只依赖于生产环境,dev环境无法执行
 - /dist 执行gulp编译后的dev目标目录，生成未压缩合并的css,js,images文件
 - /min 执行gulp --env prod后打包生成到prod目录，生成压缩合并后的css,js,images文件
 - 执行gulp --env prod --md5后生成md5戳随后也打包到/min目录下，同时生成/min/rev-mainifest.json, /images/rev-manifest.json文件供调用使用
-- 执行gulp --debug 可进行本地环境调试
+- 执行gulp --sync [domain] 可启用browser-sync调试功能，[domain]为本地开发环境Url
