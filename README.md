@@ -1,7 +1,7 @@
 一个gulp综合实例
 ==================================
 
-> 一个基于gulp搭建的前端基础配置实例，基于browserify,sass
+> 一个基于gulp搭建的前端基础配置实例，基于browserify
 
 ## 依赖
 - [nodejs](https://nodejs.org/)
