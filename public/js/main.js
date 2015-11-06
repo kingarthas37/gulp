@@ -1,5 +1,5 @@
 require('jquery');
-require('bootstrap');
+require('amazeui');
 require('underscore');
 require('jquery-jcarousel');
 require('jquery-cookie');
