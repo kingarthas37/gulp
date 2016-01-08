@@ -1,8 +1,74 @@
-$red:#e4393c;
 
-$borderColor:#dcdcde;
-$color333:#333;
-$color666:#666;
-$color999:#999;
-$colorUserHref:#e4393c;
-$colorUserBtnBgColor:#e4393c;
+
+// Responsive variables
+// =============================================================================
+
+// Breakpoint
+// -----------------------------------------------------------------------------
+
+$breakpoint-small:            640px;  // 0 - 640px
+$breakpoint-medium:           1024px; // 641 - 1024px
+$breakpoint-large:            1280px; // 1025 - 1280px
+$breakpoint-xl:               1440px; // 1281 - 1440px
+$breakpoint-xxl:              1920px; // 1441 -1920px
+
+$breakpoint-small-max:        $breakpoint-small;
+$breakpoint-md:               $breakpoint-small-max; // legacy var, DO NOT USE IT
+
+$breakpoint-medium-min:       ($breakpoint-small + 1);
+$breakpoint-medium-max:       $breakpoint-medium;
+
+$breakpoint-large-min:        ($breakpoint-medium + 1);
+$breakpoint-large-max:        $breakpoint-large;
+
+$breakpoint-xl-min:           ($breakpoint-large + 1);
+$breakpoint-xl-max:           $breakpoint-xl;
+
+$breakpoint-xxl-min:          ($breakpoint-xl + 1);
+$breakpoint-xxl-max:          $breakpoint-xxl;
+
+
+// Media Queries
+// NOTE '~' in the beginning - media query must be escaped
+// -----------------------------------------------------------------------------
+
+$screen:        "only screen";
+
+@mixin breakpoint($point) {
+    @if $point == landscape {
+        @media #{$screen} and (orientation: landscape) {  @content;  }
+    }
+    @else if $point == portrait {
+        @media #{$screen} and (orientation: portrait) {  @content;  }
+    }
+    @else if $point == small-up {
+        @media #{$screen} { @content; }
+    }
+    @else if $point == small-only {
+        @media #{$screen} and (max-width: $breakpoint-small-max) { @content;  }
+    }
+    @else if $point == medium-up {
+        @media #{$screen} and (min-width: $breakpoint-medium-min) { @content; }
+    }
+    @else if $point == medium-only {
+        @media #{$screen} and (min-width:$breakpoint-medium-min) and (max-width:$breakpoint-medium-max) {  @content;  }
+    }
+    @else if $point == large-up {
+        @media #{$screen} and (min-width:$breakpoint-large-min) { @content; }
+    }
+    @else if $point == large-only {
+        @media #{$screen} and (min-width:$breakpoint-large-min) and (max-width:$breakpoint-large-max) { @content;}
+    }
+    @else if $point == xl-up {
+        @media #{$screen} and (min-width:$breakpoint-xxl-min) { @content; }
+    }
+    @else if $point == xl-only {
+        @media #{$screen} and (min-width:$breakpoint-xl-min) and (max-width:$breakpoint-xl-max) { @content;}
+    }
+    @else if $point == xxl-up {
+        @media #{$screen} and (min-width:$breakpoint-xxl-min) { @content;}
+    }
+    @else if $point == xxl-only {
+        @media #{$screen} and (min-width:$breakpoint-xxl-min) and (max-width:$breakpoint-xxl-max) {@content;}
+    }
+}
