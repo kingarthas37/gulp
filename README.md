@@ -9,6 +9,7 @@
 
 ## 主要模块
 - [browserify](https://www.npmjs.com/package/browserify)
+- [babelify](https://www.npmjs.com/package/babelify)
 - [sass](https://www.npmjs.com/package/gulp-sass)
 - [smithsprite](https://www.npmjs.com/package/gulp.spritesmith)
 
