@@ -3,6 +3,9 @@
 
 > 一个基于gulp搭建的前端基础配置实例，基于browserify
 
+## 最近更新
+- 2016.1.20增加支持es6模块 (babelify)
+
 ## 依赖
 - [nodejs](https://nodejs.org/)
 - [gulp](https://www.npmjs.com/package/gulp)
