@@ -17,7 +17,7 @@ var buffer = require('vinyl-buffer');
 var transform = require('vinyl-transform');
 var sourcemaps = require('gulp-sourcemaps');
 var async = require('async');
-
+var babelify = require('babelify');
 
 var config = require('../../package.json');
 var onlyScripts = require('../util/script-filter');
@@ -34,6 +34,10 @@ gulp.task('browserify', function () {
         fullPaths: false,
         entries: [path.resolve(config.path.jsDev,'common/main.js')],  //入口为/common/main.js
         debug: true  //开启sourcemaps
+    }).transform(babelify,{
+        compact: false,
+        presets:['es2015'],
+        only:/\/public\/dev\/js\//
     });
 
     var w = watchify(b);
@@ -71,6 +75,10 @@ gulp.task('browserify:prod', function () {
     var b = browserify({
         entries: [path.resolve(config.path.jsDev,'common/main.js'),path.resolve(config.path.jsDev,'pages/main.js')],
         debug: true
+    }).transform(babelify,{
+        compact: false,
+        presets:['es2015'],
+        only:/\/public\/dev\/js\//
     });
 
     var bundle = function () {
